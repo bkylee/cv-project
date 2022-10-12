@@ -10,32 +10,32 @@ class ExperienceComp extends Component {
     };
 
    render(){
-    const {Education, Degrees} = this.props.Education;
+    const {Company, Title, Tenure} = this.props.Exp;
     return(
         <div>
         <h2>Education</h2>
             <h3>School:</h3>
             <form>
-                <label htmlFor="Name">Name:</label>
+                <label htmlFor="Company">Company:</label>
                 <input 
-                name="Name" 
+                name="Company" 
                 type="text"
                 onChange={this.handleChange}
-                value={Education.Name} />
+                value={Company} />
                 
-                <label htmlFor="Degree">Last Name:</label>
+                <label htmlFor="Title">Title:</label>
                 <input 
-                name="Degree" 
+                name="Title" 
                 type="text"
                 onChange={this.handleChange}
-                value={Education.Degree} />
+                value={Title} />
 
-                <label htmlFor="Program">Address</label>
+                <label htmlFor="Tenure">Tenure</label>
                 <input 
-                name="Program" 
+                name="Tenure" 
                 type="text"
                 onChange={this.handleChange}
-                value={Education.Program} />
+                value={Tenure} />
                 
                 <button type='button'>Submit</button>
                 </form>

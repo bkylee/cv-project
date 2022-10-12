@@ -10,7 +10,8 @@ class GeneralComp extends Component {
     };
 
    render(){
-    const {FirstName, LastName, Address, Phone} = this.props.General;
+    const {FirstName, LastName, Address, Phone}= this.props.General;
+    
     return(
         <div>
         <h2>General</h2>
@@ -20,7 +21,8 @@ class GeneralComp extends Component {
                 name="FirstName" 
                 type="text"
                 onChange={this.handleChange}
-                value={FirstName} />
+                value={FirstName}
+                />
                 
                 <label htmlFor="LastName">Last Name:</label>
                 <input 
