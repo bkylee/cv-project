@@ -37,7 +37,8 @@ class ExperienceComp extends Component {
                 onChange={this.handleChange}
                 value={Tenure} />
                 
-                <button type='button'>Submit</button>
+                <button type='button'>Add</button>
+                <button type='button'>Show</button>
                 </form>
             </div>
     )

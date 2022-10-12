@@ -45,7 +45,7 @@ class GeneralComp extends Component {
                 onChange={this.handleChange}
                 value={Phone} />
                 
-                <button type='button'>Submit</button>
+                <button type='button'>Add</button>
                 </form>
             </div>
     )
