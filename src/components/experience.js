@@ -5,7 +5,7 @@ class ExperienceComp extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     }
-    handleChange(e){
+    handleChange=(e)=>{
         this.props.onExperienceChange(e);
     };
 
@@ -13,10 +13,10 @@ class ExperienceComp extends Component {
     const {Company, Title, Tenure} = this.props.Exp;
     return(
         <div>
-        <h2>Education</h2>
-            <h3>School:</h3>
+        <h2>Experience</h2>
+            <h3>Company:</h3>
             <form>
-                <label htmlFor="Company">Company:</label>
+                <label htmlFor="Company">Name:</label>
                 <input 
                 name="Company" 
                 type="text"

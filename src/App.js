@@ -3,6 +3,7 @@ import './App.css';
 import GeneralComp from './components/general';
 import EducationComp from './components/education';
 import ExperienceComp from './components/experience';
+import Output from './components/output';
 
 class App extends Component{
   constructor(){
@@ -10,10 +11,13 @@ class App extends Component{
 
     this.state ={
       General:{
-        FirstName: '',
-        LastName: '',
-        Address: '',
-        Phone: ''
+        info:{
+          FirstName: '',
+          LastName: '',
+          Address: '',
+          Phone: ''
+          },
+        show: false
         },
       Education:{
         School:{
@@ -21,10 +25,12 @@ class App extends Component{
           Degree:'',
           Program:'',
         },
-        Degrees: []
+        Degrees: [],
+        show: false
       },
       Experience:{
         Jobs:[],
+        show: false,
         Exp:{
           Company: '',
           Title: '',
@@ -34,60 +40,49 @@ class App extends Component{
   };
 }
 
-
-  onGeneralChange=(e)=>{
-    const value = e.target.value;
-    const name = e.target.name;
-
+onGeneralChange=(e)=>{
   this.setState({
     General:{
-      [name]: value
+      [e.target.name]: e.target.value
     }
   });
 };
 
-onGeneralSub=(e)=>{
-  e.preventDefault();
-  
-}
+onGeneralSub=()=>{
+  this.setState({
+    General:{
+      show:true
+    }
+  });
+  };
 
 onEducationChange=(e)=>{
-  const value = e.target.value;
-  const name = e.target.name;
-
   this.setState({
     Education:{
       School:{
-      [name]: value
+      [e.target.name]: e.target.value
     }
   }
   });
 };
+
 onExperienceChange=(e)=>{
-  const value = e.target.value;
-  const name = e.target.name;
   this.setState({
     Experience:{
       Exp:{
-      [name]: value
+      [e.target.name]: e.target.value
     }
   }
   });
 };
 
-addDegree=(e)=>{
-  e.preventDefault();
-}
-
-
-
-
-  render(){
+  render() {
   return (
     <div>
-      <GeneralComp onGeneralChange={()=>this.onGeneralChange} General={()=>this.state.General}/>
-      <EducationComp Schools={()=>this.state.Education.School} onEducationChange={()=>this.onEducationChange}/>
-      <ExperienceComp Exp={()=>this.Experience.Exp} onExperienceChange={()=>this.onEducationChange} />
+      <GeneralComp onClick={this.onGeneralSub} onChange={this.onGeneralChange} General={this.state.General.info}/>
+      <EducationComp Schools={this.state.Education.School} onChange={this.onEducationChange}/>
+      <ExperienceComp Exp={this.state.Experience.Exp} onChange={this.onExperienceChange} />
+      <Output General={this.state.General.info} GenShow={this.state.General.show}/>
     </div>
   );
 }

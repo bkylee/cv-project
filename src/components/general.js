@@ -8,40 +8,29 @@ class GeneralComp extends Component {
         }
     }
 
-    editTrue(){
+    editTrue=()=>{
         this.setState({
             editor:true
         });
     };
 
-    editFalse(){
+    editFalse=()=>{
         this.setState({
             editor: false
         });
-        console.log(this.state.editor)
     };
 
-    
-    handleChange(e){
-        this.props.onGeneralChange(e);
-    };
-
-    handleClick(){
-        this.props.onClick();
-    }
 
    render(){
-    const {FirstName, LastName, Address, Phone}= this.props.General;
-    const editor = this.state.editor;
     let output;
-    if(editor){
+    if(this.state.editor){
         output =
         <FormEditor 
-        FirstName={FirstName} LastName={LastName} 
-        Address={Address} Phone={Phone} handleChange={()=>this.handleChange} 
-        handleClick={()=>this.handleClick} handleEdit={()=>this.editFalse}/>
+        FirstName={this.props.General.FirstName} LastName={this.props.General.LastName} 
+        Address={this.props.General.Address} Phone={this.props.General.Phone} handleChange={this.props.onGeneralChange} 
+        handleClick={this.props.onClick} handleEdit={this.editFalse}/>
     } else { 
-        output = <DefShow handleEdit={()=>this.editTrue} />
+        output = <DefShow handleEdit={this.editTrue} />
 }
 return(
     <div>{output}</div> 
@@ -50,11 +39,7 @@ return(
 }
 
 class FormEditor extends Component{
-    handleChange(){
-        this.props.handleChange();
-    }
     render(){
-        const {FirstName, LastName, Address, Phone} = this.props;
     return(
         <div>
         <h2>General</h2>
@@ -63,33 +48,33 @@ class FormEditor extends Component{
                 <input 
                 name="FirstName" 
                 type="text"
-                onChange={()=>this.props.handleChange}
-                value={FirstName}
+                onChange={this.props.onChange}
+                value={this.props.FirstName}
                 />
                 
                 <label htmlFor="LastName">Last Name:</label>
                 <input 
                 name="LastName" 
                 type="text"
-                onChange={()=>this.props.handleChange}
-                value={LastName} />
+                onChange={this.props.onChange}
+                value={this.props.LastName} />
 
                 <label htmlFor="Address">Address</label>
                 <input 
                 name="Address" 
                 type="text"
-                onChange={()=>this.props.handleChange}
-                value={Address} />
+                onChange={this.props.onChange}
+                value={this.props.Address} />
 
                 <label htmlFor="Phone">Phone</label>
                 <input 
                 name="Phone" 
                 type="text"
-                onChange={this.props.handleChange}
-                value={Phone} />
+                onChange={this.props.onChange}
+                value={this.props.Phone} />
                 
-                <button type='button' onClick={()=>this.props.handleEdit}>Hide</button>
-                <button type='button' onClick={()=>this.props.handleClick}>Output</button>
+                <button type='button' onClick={this.props.handleEdit}>Hide</button>
+                <button type='button' onClick={this.props.handleClick}>Output</button>
                 </form>
             </div>
     )
@@ -99,7 +84,7 @@ class FormEditor extends Component{
 function DefShow(props){
     return(
         <div>
-            <h2>General</h2><button type='button' onClick={()=>props.handleEdit}>Show</button>
+            <h2>General</h2><button type='button' onClick={props.handleEdit}>Show</button>
         </div>
     )
 }

@@ -9,10 +9,18 @@ class Output extends Component {
     }
 
     render(){
+        let output;
+        if(this.GenShow){
+            output = <div id="outputWrapper">
+            <GenOutput General={this.General} Show={this.GenShow} />
+        </div>
+        } else {
+            output = null;
+        }
         return(
-            <div id="outputWrapper">
-                <GenOutput General={this.General} Show={this.Show} />
-            </div>
+            <>
+            {output}
+            </>
         )
     }
 }
