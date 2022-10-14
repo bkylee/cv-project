@@ -3,38 +3,51 @@ import React, { Component } from "react";
 class ExperienceComp extends Component {
     constructor(props){
         super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
-    handleChange=(e)=>{
-        this.props.onExperienceChange(e);
+        this.state ={
+              Jobs:[],
+              show: false,
+              editor: true,
+              Exp:{
+                Company: '',
+                Title: '',
+                Tenure: '',
+              }
+            }
+        }
+    onChange =(e)=>{
+        this.setState({
+            Exp:{
+                [e.target.name]:e.target.value
+            }
+        })
     };
 
    render(){
-    const {Company, Title, Tenure} = this.props.Exp;
+    const {Company, Title, Tenure} = this.state.Exp
     return(
         <div>
-        <h2>Experience</h2>
-            <h3>Company:</h3>
+        <h2>Education</h2>
+            <h3>School:</h3>
             <form>
-                <label htmlFor="Company">Name:</label>
+                <label htmlFor="Company">Company:</label>
                 <input 
                 name="Company" 
                 type="text"
-                onChange={this.handleChange}
+                onChange={this.onChange}
                 value={Company} />
                 
                 <label htmlFor="Title">Title:</label>
                 <input 
                 name="Title" 
                 type="text"
-                onChange={this.handleChange}
+                onChange={this.onChange}
                 value={Title} />
 
                 <label htmlFor="Tenure">Tenure</label>
                 <input 
                 name="Tenure" 
                 type="text"
-                onChange={this.handleChange}
+                onChange={this.onChange}
                 value={Tenure} />
                 
                 <button type='button'>Add</button>
