@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import ExpOutput from "../ExpOutput";
+import ExpOutput from "./ExpOutput";
+import './style.css';
 
 class ExperienceComp extends Component {
     constructor(props){
@@ -21,6 +22,25 @@ class ExperienceComp extends Component {
                 [e.target.name]:e.target.value
         })
     };
+
+    onDeleteTitles =(val) =>{
+            this.setState({
+                Titles: this.state.Titles.filter(element=>
+                    element !== val)
+                })
+            }
+    onDeleteCompanies =(val)=>{
+            this.setState({
+                Companies: this.state.Companies.filter(element=>
+                    element !== val)
+            });
+        }
+    onDeleteTenures = (val)=>{
+            this.setState({
+                Tenures: this.state.Tenures.filter(element=>
+                    element !== val)
+            });
+        }
 
     onSubmit=()=>{
         this.setState({
@@ -53,7 +73,7 @@ class ExperienceComp extends Component {
     let output; 
 
     if (this.state.editor){
-        form= <div>
+        form= <div className="FormWrapper">
         <h2>Work Experience</h2>
         <button type='button' onClick={this.showHideEditor}>Hide</button>
         <button type='button' onClick={this.onSubmit}>Submit</button>
@@ -80,16 +100,15 @@ class ExperienceComp extends Component {
                 type="text"
                 onChange={this.onChange}
                 value={Tenure} />
-
                 </form>
-            </div>
-    }else{form = <> <h2>Work Experience</h2><button type="button" onClick={this.showHideEditor}>Show</button></>};
+                </div>
+    }else{form = <><h2>Work Experience</h2><button type="button" onClick={this.showHideEditor}>Show</button></>};
 
     if (this.state.show){
-        output = <ExpOutput Companies={this.state.Companies} Titles={this.state.Titles} Tenures={this.state.Tenures} />
+        output = <ExpOutput Companies={this.state.Companies} Titles={this.state.Titles} Tenures={this.state.Tenures} onDeleteTitles={this.onDeleteTitles} onDeleteTenures={this.onDeleteTenures} onDeleteCompanies={this.onDeleteCompanies}/>
     }
     return(
-      <>{form}{output}</>
+      <div className="CompWrapper">{form}{output}</div>
     )
 }
 }

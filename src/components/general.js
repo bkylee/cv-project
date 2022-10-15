@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GenOutput from "./genOutput";
+import './style.css';
 
 class GeneralComp extends Component {
     constructor(props){
@@ -49,7 +50,7 @@ class GeneralComp extends Component {
     let output;
     if(this.state.editor){
         form =
-        <div>
+        <div className="FormWrapper">
         <h2>General</h2> 
         <button type='button' onClick={this.editFalse}>Hide</button>
         <button type='button' onClick={this.onSub}>Output</button>
@@ -94,16 +95,16 @@ if (this.state.show){
 }
 
 return(
-    <div>{form}{output}</div> 
+    <div className="CompWrapper">{form}{output}</div> 
 )
 }
 }
 
 function DefShow(props){
     return(
-        <div>
+        <>
             <h2>General</h2><button type='button' onClick={props.handleEdit}>Show</button>
-        </div>
+        </>
     )
 }
 

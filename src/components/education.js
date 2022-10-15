@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EduOutput from "./EduOutput";
+import './style.css';
 
 class EducationComp extends Component {
     constructor(props){
@@ -28,7 +29,24 @@ class EducationComp extends Component {
           }
         })
   }
-
+  onDeleteSchools =(val) =>{
+    this.setState({
+        Schools: this.state.Schools.filter(element=>
+            element !== val)
+        })
+    }
+    onDeletePrograms=(val)=>{
+    this.setState({
+        Programs: this.state.Programs.filter(element=>
+            element !== val)
+    });
+}
+ onDeleteDegrees= (val)=>{
+    this.setState({
+        Degrees: this.state.Degrees.filter(element=>
+            element !== val)
+    });
+}
   onDegreeChange=(e)=>{
     this.setState({
       School:{
@@ -82,7 +100,7 @@ showHideOutput=()=>{
     let output; 
 
     if (this.state.editor){
-        form=<div>
+        form=<div className="FormWrapper">
         <h2>Education</h2>
         <button type='button' onClick={this.showHideEditor}>Hide</button>
         <button type='button' onClick={this.onSubmit}>Submit</button>
@@ -112,14 +130,14 @@ showHideOutput=()=>{
                 </form>
             </div>;
     } else {
-        form=<> <h2>Education</h2><button type="button" onClick={this.showHideEditor}>Show</button></>
+        form=<><h2>Education</h2><button type="button" onClick={this.showHideEditor}>Show</button></>
     };
 
     if (this.state.show){
-        output = <EduOutput Schools={this.state.Schools} Programs={this.state.Programs} Degrees={this.state.Degrees} />
+        output = <EduOutput Schools={this.state.Schools} Programs={this.state.Programs} Degrees={this.state.Degrees} onDeleteDegrees={this.onDeleteDegrees} onDeletePrograms={this.onDeletePrograms} onDeleteSchools={this.onDeleteSchools}/>
     }
     return(
-      <>{form}{output}</>
+      <div className="CompWrapper">{form}{output}</div>
     )
 }
 }

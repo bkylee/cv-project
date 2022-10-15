@@ -1,0 +1,23 @@
+.root{
+    box-sizing: border-box;
+}
+
+h2{
+   margin-top: 0.5rem;
+   margin-bottom: 0.5rem;
+}
+
+.CompWrapper{
+    display: flex;
+}
+
+ /* .Output{
+    display: flex;
+    justify-content: start;
+} */
+
+.FormWrapper{
+    margin:0;
+    width: 75%;
+} 
+
